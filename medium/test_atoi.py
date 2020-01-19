@@ -9,7 +9,6 @@ def atoi(s):
             int_str += char
         else:
             break
-    # if int_str:
     try:
         int_str = int(int_str)
         if int_str >= 2 ** 31:
@@ -19,7 +18,6 @@ def atoi(s):
         return int_str
     except Exception:
         return 0
-    # return 0
 
 
 def test_1():
