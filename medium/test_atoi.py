@@ -1,23 +1,28 @@
-def replace_alpha(s):
-    l = [str(char) for char in s if char.isnumeric()]
-    return "".join(l)
-
-
 def atoi(s):
-    try:
-        i = int(float(s))
-        if i >= 2 ** 31 - 1:
-            return 2 ** 31 - 1
-        if i <= -2 ** 31:
-            return -2 ** 31
-        return i
-    except Exception:
-        s = s.lstrip()
-        if len(s) > 0 and s[0].isnumeric():
-            s = replace_alpha(s)
-            return int(s)
-        elif not s or not s[0].isnumeric():
+    s = s.lstrip()
+    int_str = ""
+    if len(s) < 1 or s[0].isalpha():
+        return 0
+    if s[0] == "-":
+        int_str += "-"
+        s = s[1:]
+    elif s[0] == "+":
+        s = s[1:]
+    i = 0
+    while i < len(s) and s[i].isnumeric():
+        int_str += s[i]
+        i += 1
+    if int_str:
+        try:
+            int_str = int(int_str)
+            if int_str >= 2 ** 31:
+                return 2 ** 31 - 1
+            if int_str <= -2 ** 31:
+                return -2 ** 31
+            return int_str
+        except Exception:
             return 0
+    return 0
 
 
 def test_1():
@@ -54,3 +59,15 @@ def test_8():
 
 def test_9():
     assert atoi("  -0012a42") == -12
+
+
+def test_10():
+    assert atoi(".1") == 0
+
+
+def test_11():
+    assert atoi("-") == 0
+
+
+def test_12():
+    assert atoi("+1") == 1
