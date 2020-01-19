@@ -9,15 +9,11 @@ def findMedianSortedArrays(nums1, nums2):
 
 def findMedianSortedArraysSimple(nums1, nums2):
     nums = sorted(nums1 + nums2)
-    length = len(nums)
-    middle = length // 2
-    front = nums[:middle]
-    back = nums[middle:]
-    if length % 2 == 0:
-        med = (max(front) + min(back)) / 2
+    middle = len(nums) // 2
+    if len(nums) % 2 == 0:
+        return float((nums[:middle][-1] + nums[middle:][0]) / 2)
     else:
-        med = nums[middle]
-    return float(med)
+        return float(nums[middle])
 
 
 def test_1():
