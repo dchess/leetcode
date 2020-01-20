@@ -1,12 +1,7 @@
 def decompressRLElist(nums):
     decompressed = []
-    for i, num in enumerate(nums):
-        if i % 2 == 0:
-            count = num
-        else:
-            value = num
-            for i in range(count):
-                decompressed.append(value)
+    for i in range(0, len(nums), 2):
+        decompressed.extend(nums[i] * [nums[i + 1]])
     return decompressed
 
 
